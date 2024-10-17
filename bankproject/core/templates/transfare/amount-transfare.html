@@ -47,26 +47,38 @@
                         <div class="send-banance">
                             <span class="mdr">You Send</span>
                             <div class="input-area">
-                                <input class="xxlr" onkeyup="CalculateBalance()" placeholder="{{ request.user.account.account_balance|intcomma}}" name="amount-send" type="number" id="amount-send">
-                                <select>
-                                    <option value="1">USD</option>
-                                    <option value="2">USD</option>
-                                    <option value="3">USD</option>
+                                <span id="currency-symbol">₹</span> <!-- Currency symbol placeholder -->
+                                <input class="xxlr" onkeyup="CalculateBalance()" placeholder="{{ request.user.account.account_balance|intcomma }}" name="amount-send" type="number" id="amount-send">
+                                <select id="currency-select" onchange="updateCurrencySymbol()">
+                                    <option value="INR">INR</option>
+                                    <option value="USD">USD</option>
                                 </select>
                             </div>
-                            <p>Available Balance<b>${{request.user.account.account_balance}}</b></p>
+                            <p>Available Balance: <b id="available-balance">₹{{ request.user.account.account_balance }}</b></p>
                             <p id="new_balance"></p>
                             <p class="text-danger" id="error-div"></p>
                         </div>
+                        
+                        <script>
+                            function updateCurrencySymbol() {
+                                const currencySelect = document.getElementById("currency-select");
+                                const currencySymbol = document.getElementById("currency-symbol");
+                                const availableBalance = document.getElementById("available-balance");
+                        
+                                if (currencySelect.value === "INR") {
+                                    currencySymbol.textContent = "₹"; // INR symbol
+                                    availableBalance.innerHTML = `₹{{ request.user.account.account_balance }}`;
+                                } else if (currencySelect.value === "USD") {
+                                    currencySymbol.textContent = "$"; // USD symbol
+                                    availableBalance.innerHTML = `$ {{ request.user.account.account_balance }}`;
+                                }
+                            }
+                        </script>
+                        
                         <div class="send-banance">
                             <span class="mdr">Payment Decsription</span>
                             <div class="input-area">
                                 <input class="xxlr" onkeyup="CalculateBalance()" placeholder="payment for fees" name="description" type="text" >
-                                <select>
-                                    <option value="1">USD</option>
-                                    <option value="2">USD</option>
-                                    <option value="3">USD</option>
-                                </select>
                             </div>
                           
                         </div>

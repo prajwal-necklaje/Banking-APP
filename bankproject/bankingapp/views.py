@@ -4,6 +4,7 @@ from .models import KYC, Account
 from django.contrib import messages
 from core.forms import CreditCardForm
 from core.models import CreditCard, Transaction
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -15,12 +16,12 @@ def account(request):
             kyc = KYC.objects.get(user=user)
         except:
             messages.warning(request, "You Need To Submit YOur KYC")
-            return redirect("account:kyc-form")
+            return redirect("bankingapp:kyc-reg")
 
         account = Account.objects.get(user=user)
     else:
         messages.warning(request, "You Need To Login")
-        return redirect("userauths:sign-in")
+        return redirect("custom_auth:sign-in")
     context = {
         'account':account,
         'kyc':kyc,
@@ -28,7 +29,7 @@ def account(request):
     return render(request, 'account/account.html', context)
 
 
-
+@login_required
 def kyc_registration(request):
     user = request.user
     account = Account.objects.get(user=user)
@@ -47,7 +48,7 @@ def kyc_registration(request):
             new_form.account = account
             new_form.save()
             messages.success(request, "KYC Form submitted successfully")
-            return redirect("account:dashboard")
+            return redirect("bankingapp:dashboard")
 
     else:
         form = KYCForm(instance=kyc) 
@@ -73,7 +74,7 @@ def Dashboard(request):
             kyc = KYC.objects.get(user=user)
         except:
             messages.warning(request, "You Need To Submit YOur KYC")
-            return redirect("account:kyc-reg")
+            return redirect("bankingapp:kyc-reg")
         
         recent_transfer = Transaction.objects.filter(sender=request.user, transaction_type="transfer", status="completed").order_by("-id")[:1]
         recent_recieved_transfer = Transaction.objects.filter(reciver=request.user, transaction_type="transfer").order_by("-id")[:1]
@@ -96,14 +97,14 @@ def Dashboard(request):
 
                 card_id = new_form.card_id
                 messages.success(request, "Card ADDED Successfully.")
-                return redirect("account:dashboard")
+                return redirect("bankingapp:dashboard")
         else:
             form = CreditCardForm()
         account = Account.objects.get(user=user)
         credit_card = CreditCard.objects.filter(user=user).order_by("-id")
     else:
         messages.warning(request, "You Need To Login")
-        return redirect("userauths:sign-in")
+        return redirect("custom_auth:sign-in")
     context = {
         'account':account,
         'kyc':kyc,

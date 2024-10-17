@@ -4,7 +4,7 @@ from .transfare import search_using_account, AmountTranfare, AmountTranfareProce
 from .transaction import transaction_list, transaction_detail
 from .payment_request import SearchUserRequest, AmountRequest, AmountRequestProcess, RequestConfirmation, RequestCompleted, RequestFinialProcess, settlement_confirmation, settlement_processing, SettlementCompleted, delete_payment_request
 from .credit_card import credit_card_detail, fund_credit_card, withdraw_credit_card, delete_card
-
+from . import views
 
 app_name = 'core'
 
@@ -19,11 +19,7 @@ urlpatterns = [
     path('transfare-process/<account_number>/<transaction_id>/',TransfarProcess , name='transaction-process'),
     path('transfare-completed/<account_number>/<transaction_id>/',TransfarCompleted , name='transfar-completed'),
 
-
-
     #transaction
-
-
 
     path('transaction/',transaction_list, name='transaction-list' ),
     path('transaction/<transaction_id>',transaction_detail, name='transaction-detail' ),
@@ -49,6 +45,11 @@ urlpatterns = [
     path('delete-credit-card/<card_id>/',delete_card, name= "delete-card" ),
 
 
+    #reciepient
 
+    path('reciepient/', views.account_list, name='reciepient'),
+
+    #depositals
+    path('deposit/', views.deposit_money, name='deposit_money'),
 
 ]

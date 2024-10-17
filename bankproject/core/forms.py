@@ -13,3 +13,16 @@ class CreditCardForm(forms.ModelForm):
     class Meta:
         model = CreditCard
         fields = ['name', 'number', 'month', 'year', 'cvv', 'card_type']
+
+class DepositForm(forms.Form):
+    deposit_amount = forms.DecimalField(max_digits=12, decimal_places=2, required=True, label="Deposit Amount")
+    deposit_method = forms.ChoiceField(
+        choices=[
+            ('bank_transfer', 'Bank Transfer'),
+            ('credit_card', 'Credit Card'),
+            ('mobile_wallet', 'Mobile Wallet'),
+            ('cash_deposit', 'Cash Deposit'),
+        ],
+        required=True,
+        label="Deposit Method"
+    )

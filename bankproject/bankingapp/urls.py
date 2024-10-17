@@ -3,7 +3,7 @@ from .views import kyc_registration, account,Dashboard
 
 
 
-app_name = 'account'
+app_name = 'bankingapp'
 
 urlpatterns = [
     path("",account , name='account'),

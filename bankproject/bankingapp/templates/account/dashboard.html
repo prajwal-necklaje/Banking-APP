@@ -19,29 +19,14 @@
                                 <div class="top-area">
                                     <div class="left-side">
                                         <h5>Hi, {{kyc.full_name}}</h5>
-                                        <h2>${{account.account_balance}}</h2>
-                                        <h5 class="receive">Last Received <span>$25,700.00</span></h5>
+                                        <h2>₹{{account.account_balance}}</h2>
+                                        <h5 class="receive">Last Received <span>₹{{account.account_balance}}</span></h5>
                                     </div>
                                     <div class="right-side">
                                         <div class="right-top">
                                             <select>
-                                                <option value="1">US Dollar</option>
-                                                <option value="2">US Dollar</option>
-                                                <option value="3">US Dollar</option>
+                                                <option value="1">IND INR</option>
                                             </select>
-                                            <div class="dropdown-area">
-                                                <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <img src="assets/images/icon/option.png" alt="icon">
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><a class="dropdown-item" href="#">Fiat Currency</a></li>
-                                                    <li><a class="dropdown-item" href="#">crypto Currency</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="right-bottom">
-                                            <h4>$30,700.00</h4>
-                                            <h5>Payouts</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -49,7 +34,6 @@
                                     <div class="left-side">
                                         <a href="{% url 'core:search-account' %}" class="cmn-btn">Transfer Money</a>
                                         <a href="{% url 'core:request-search-user' %}" class="cmn-btn">Receive Money</a>
-                                        <a href="withdraw-money-step-1.html" class="cmn-btn">All Cards</a>
                                     </div>
                                     <div class="right-side">
                                         <div class="dropdown-area">
@@ -690,7 +674,7 @@
                                     <div class="row">
                                         <div class="col-sm-5 text-center">
                                             <div class="icon-area">
-                                                <img src="assets/images/icon/transaction-details-icon.png" alt="icon">
+                                                <img src="{% static 'assets1/images/icon/transaction-details-icon.png' %}" alt="icon">
                                             </div>
                                             <div class="text-area">
                                                 <h6>Envato Pty Ltd</h6>
@@ -705,29 +689,29 @@
                                                 <ul class="payment-details">
                                                     <li>
                                                         <span>Payment Amount</span>
-                                                        <span>718.64 USD</span>
+                                                        <span>{{transaction.amount|intcomma}} INR</span>
                                                     </li>
                                                     <li>
                                                         <span>Fee</span>
-                                                        <span>1.50 USD</span>
+                                                        <span>100 INR</span>
                                                     </li>
                                                     <li>
                                                         <span>Total Amount</span>
-                                                        <span>717.14 USD</span>
+                                                        <span>{{transaction.amount|intcomma}} INR</span>
                                                     </li>
                                                 </ul>
                                                 <ul class="payment-info">
                                                     <li>
                                                         <p>Payment From</p>
-                                                        <span class="mdr">Envato Pty Ltd</span>
+                                                        <span class="mdr">{{transaction.sender.kyc.full_name|title}}</span>
                                                     </li>
                                                     <li>
                                                         <p>Payment Description</p>
-                                                        <span class="mdr">Envato Feb 2022 Member Payment</span>
+                                                        <span class="mdr">{{transaction.description}}</span>
                                                     </li>
                                                     <li>
                                                         <p>Transaction ID:</p>
-                                                        <span class="mdr">6559595979565959895559595</span>
+                                                        <span class="mdr">{{transaction.transaction_id}}</span>
                                                     </li>
                                                 </ul>
                                             </div>

@@ -1,0 +1,22 @@
+<!-- templates/deposit.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposit Money</title>
+   <!-- Link to your CSS file -->
+</head>
+<body>
+    <h1>Deposit Money</h1>
+    <h3>Your current balance: {{ account.account_balance }}</h3>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renders the form fields -->
+        <button type="submit">Deposit</button>
+    </form>
+
+   {% comment %} <a href="{% url 'account_overview' %}">Back to Account Overview</a> {% endcomment %}  <!-- Link to go back -->
+</body>
+</html>

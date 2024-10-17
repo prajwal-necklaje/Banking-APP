@@ -45,13 +45,13 @@ def LoginView(request):
                 return redirect('core:index')
             else:
                 messages.warning(request, "Username or Password does not exist")
-                return redirect("userauths:sign-in")
+                return redirect("custom_auth:sign-in")
         except:
             messages.warning(request, "User does not exist")
 
     if request.user.is_authenticated:
         messages.warning(request, "You Are Already Logged In")
-        return redirect("account:account")
+        return redirect("bankingapp:account")
 
     return render(request, "userauths/sign-in.html")        
 
@@ -60,4 +60,4 @@ def LoginView(request):
 def LogoutView(request):
     logout(request)
     messages.success(request, "You have been logged out")
-    return redirect('userauths:sign-in')
+    return redirect('custom_auth:sign-in')

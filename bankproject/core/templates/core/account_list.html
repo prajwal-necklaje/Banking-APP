@@ -1,0 +1,56 @@
+{% extends 'partials/dashboard-base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+    <section class="dashboard-section body-collapse">
+        <div class="overlay pt-120">
+            <div class="container-fluid">
+                <div class="main-content">
+                    <div class="head-area d-flex align-items-center justify-content-between mb-4">
+                        <h1>Account List</h1>
+                        <div class="icon-area">
+                            <img src="{% static 'assets1/images/icon/support-icon.png' %}" alt="icon">
+                        </div>
+                    </div>
+
+                    <!-- Search Form -->
+                    <form method="GET" action="{% url 'core:reciepient' %}" class="flex-fill">
+                        {% csrf_token %}
+                        <div class="form-group d-flex align-items-center">
+                            <img src="{% static 'assets1/images/icon/search.png' %}" alt="icon">
+                        <input type="text" name="account_number" placeholder="Search by Account Number/Name" value="{{ request.GET.account_number }}">
+                        <button type='submit'><i class="fas fa-angle-right"></i></button>
+                        </div>
+                    </form>
+
+                    <!-- Account Table -->
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Account Number</th>
+                                    <th>Account Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for account in accounts %}
+                                <tr>
+                                    <td>{{ account.user.username }}</td>
+                                    <td>{{ account.account_number }}</td>
+                                    <td>{{ account.account_status }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3">No accounts found.</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

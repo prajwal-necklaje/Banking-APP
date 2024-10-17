@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "custom_auth",
     "bankingapp",
     'jazzmin',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'core.middleware.LanguagePreferenceMiddleware',
 ]
 
 ROOT_URLCONF = 'bankproject.urls'
@@ -104,8 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_URL = "userauths:sign-in"
-LOGOUT_REDIRECT_URL = "userauths:sign-in"
+LOGIN_URL = "custom_auth:sign-in"
+LOGOUT_REDIRECT_URL = "custom_auth:sign-in"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

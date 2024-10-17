@@ -23,8 +23,6 @@ def search_using_account(request):
     return render(request, "transfare/search-account.html", context)
 
 
-
-
 def AmountTranfare(request, account_number):
     try:
         account = Account.objects.get(account_number=account_number)
@@ -81,7 +79,7 @@ def AmountTranfareProcess(request, account_number):
 
     else:
         messages.warning(request, 'Error Occured, Try again later .')
-        return redirect("account:account")
+        return redirect("bankingapp:account")
 
          
 
@@ -92,7 +90,7 @@ def TransactionConfirmation(request, account_number, transaction_id):
         transaction = Transaction.objects.get(transaction_id=transaction_id)
     except:
         messages.warning(request, 'Transaction Does not exists')
-        return redirect('account:account') 
+        return redirect('bankingapp:account')
 
 
     context = {'account':account,
@@ -151,7 +149,7 @@ def TransfarProcess(request,account_number, transaction_id):
         
     else:
         messages.warning(request, "An Error occured, Try again later.")
-        return redirect("account:account")    
+        return redirect("bankingapp:account")    
 
 
 
@@ -162,7 +160,7 @@ def TransfarCompleted(request ,account_number, transaction_id):
 
     except:
         messages.warning(request, 'Transfare does not exists')
-        return redirect("account:account")
+        return redirect("bankingapp:account")
     
     context = {'account':account,
                'transaction':transaction
