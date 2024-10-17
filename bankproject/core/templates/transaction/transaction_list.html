@@ -79,7 +79,7 @@
                                                             {% endif %}
                                                         </td>
                                                         <td>
-                                                            <p>${{s.amount|intcomma}}</p>
+                                                            <p>₹{{s.amount|intcomma}}</p>
                                                         </td>
                                                         <td>
                                                             <a href="{% url 'core:transaction-detail' s.transaction_id %}"><i class=" fas fa-eye"></i></a>
@@ -132,7 +132,7 @@
                                                             {% endif %}
                                                         </td>
                                                         <td>
-                                                            <p>${{s.amount|intcomma}}</p>
+                                                            <p>₹{{s.amount|intcomma}}</p>
                                                         </td>
                                                         <td>
                                                             <a href="{% url 'core:transaction-detail' s.transaction_id %}"><i class=" fas fa-eye"></i></a>
@@ -194,7 +194,7 @@
                                                                 {% endif %}
                                                             </td>
                                                             <td>
-                                                                <p>+${{s.amount|intcomma}}</p>
+                                                                <p>+₹{{s.amount|intcomma}}</p>
                                                             </td>
                                                             <td>
                                                                 {% if s.status == "request_sent" %}
@@ -267,7 +267,7 @@
                                                                 {% endif %}
                                                             </td>
                                                             <td>
-                                                                <p>+${{s.amount|intcomma}}</p>
+                                                                <p>+₹{{s.amount|intcomma}}</p>
                                                             </td>
                                                             <td>
                                                                 
@@ -355,7 +355,7 @@
                                                             <span>17 Oct, 2020</span>
                                                         </p>
                                                         <p class="right">
-                                                            <span>$160.48</span>
+                                                            <span>₹160.48</span>
                                                             <span>Withdraw</span>
                                                         </p>
                                                     </li>
@@ -365,7 +365,7 @@
                                                             <span>15 Oct, 2021</span>
                                                         </p>
                                                         <p class="right">
-                                                            <span>$106.58</span>
+                                                            <span>₹106.58</span>
                                                             <span>Withdraw</span>
                                                         </p>
                                                     </li>
@@ -375,7 +375,7 @@
                                                             <span>12 Oct, 2020</span>
                                                         </p>
                                                         <p class="right">
-                                                            <span>$176.58</span>
+                                                            <span>₹176.58</span>
                                                             <span>Withdraw</span>
                                                         </p>
                                                     </li>
@@ -385,7 +385,7 @@
                                                             <span>25 Oct, 2020</span>
                                                         </p>
                                                         <p class="right">
-                                                            <span>$167.85</span>
+                                                            <span>₹167.85</span>
                                                             <span>Withdraw</span>
                                                         </p>
                                                     </li>

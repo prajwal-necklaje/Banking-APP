@@ -69,8 +69,8 @@
                                     currencySymbol.textContent = "₹"; // INR symbol
                                     availableBalance.innerHTML = `₹{{ request.user.account.account_balance }}`;
                                 } else if (currencySelect.value === "INR") {
-                                    currencySymbol.textContent = "$"; // USD symbol
-                                    availableBalance.innerHTML = `$ {{ request.user.account.account_balance }}`;
+                                    currencySymbol.textContent = "₹"; // USD symbol
+                                    availableBalance.innerHTML = `₹ {{ request.user.account.account_balance }}`;
                                 }
                             }
                         </script>
@@ -97,12 +97,12 @@
 
                                 let errors = []
                                 new_bal = available_balance - sendAmount
-                                new_balance.innerHTML = `New Balance <b> $${new_bal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </b>`;
-                                total_to_pay.innerHTML = `INR <b> $${sendAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </b>`;
+                                new_balance.innerHTML = `New Balance <b> ₹₹{new_bal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </b>`;
+                                total_to_pay.innerHTML = `INR <b> ₹${sendAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} </b>`;
 
                                 if (new_bal < 0){
                                     new_balance.style.color = "red"
-                                    alert('You can only send $' + available_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+                                    alert('You can only send ₹' + available_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
 
                                 }else{
                                     new_balance.style.color = 'black'
